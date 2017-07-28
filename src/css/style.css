@@ -1,0 +1,103 @@
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+html, body{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+[data-content]{
+    display: flex;
+    height: calc(100vh - 40px);
+}
+
+.hide{
+    display: none;
+}
+
+.left,
+.right{
+    padding: 8px;
+}
+.left{
+    background-color: #CCC;  
+    overflow-y: auto;
+}
+.right{
+    background-color: #DDD; 
+    min-width: 400px;
+}
+::-webkit-scrollbar{
+    width: 6px!important;
+    height: 6px!important;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-track{
+    background: rgba(255,255,255,.08);
+}
+.panel label{
+    display: block;
+}
+.panel label ~ label{
+    margin-top: 8px;
+}
+.panel fieldset ~ fieldset{
+    margin-top: 8px;
+}
+.panel input,
+.panel textarea{
+    padding: 4px 8px;
+    font-size: 16px;
+    width: 100%;
+    resize: vertical;
+}
+.panel textarea{
+    height: calc(100% - 16px);
+}
+.panel input[type="submit"]{
+    margin-top: 8px;
+    padding: 8px 8px;
+    border: none;
+}
+.panel .right form{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.flex{
+    flex: 1;
+    position: relative;
+}
+.menu{
+    background-color: #E5E6E7;
+    border-bottom: 1px solid #BBB; 
+}
+.menu ul{
+    padding: 0;
+    margin: 0;
+}
+.menu li{
+    display: inline-block;
+    height: 39px;
+    line-height: 39px;
+    position: relative;
+}
+.menu a{
+    display: block;
+    padding: 0 20px;
+    position: relative;
+    width: 100%;
+    color: #333;
+    font-weight: 900;
+}
+.menu a.current,
+.menu a.current:hover{
+    background-color: #C5C6C7;
+}
+.menu a:hover{
+    color: #000;
+    background-color: #E1E2E3;
+}

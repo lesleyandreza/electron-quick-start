@@ -1,8 +1,8 @@
+const chalk = require('chalk')
+const highlight = require('cli-highlight').highlight
+const windowStateKeeper = require('electron-window-state');
 const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
+const { ipcMain, app, BrowserWindow } = electron
 
 const path = require('path')
 const url = require('url')
@@ -11,19 +11,50 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function createWindow () {
+ipcMain.on('emmit-handoff', (event, arg) => {
+
+  console.log(chalk.green('⬆️  Emmit Handoff:'))
+  console.log(highlight(JSON.stringify(arg, null, 2), { language: 'json' }))
+  let { type, userInfo } = arg;
+  app.setUserActivity(type, userInfo);
+
+})
+
+ipcMain.on('clear-handoff', (event) => {
+
+  console.log(chalk.red('❌  Clear Handoff'))
+  app.invalidateCurrentActivity();
+
+})
+
+function createWindow() {
+
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 800,
+    defaultHeight: 600
+  });
+
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
+    minHeight: 460,
+    minWidth: 800,
+  })
+
+  mainWindowState.manage(mainWindow);
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, '../../src/index.html'),
     protocol: 'file:',
     slashes: true
   }))
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

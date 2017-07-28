@@ -1,1 +1,8 @@
 node_modules
+releases
+src/js-renderer/*.min.js
+config.json
+.DS_Store
+development.provisionprofile
+info.plist
+mas.entitlements

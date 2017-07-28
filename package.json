@@ -2,9 +2,11 @@
   "name": "electron-quick-start",
   "version": "1.0.0",
   "description": "A minimal Electron application",
-  "main": "main.js",
+  "main": "./src/js-main/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "./node_modules/.bin/electron .",
+    "pack": "./scripts/mas-dev.sh",
+    "prepack": "node scripts/inject-variables.js && ./node_modules/.bin/webpack"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -17,6 +19,16 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "babili-webpack-plugin": "^0.1.2",
+    "electron": "^1.7.5",
+    "electron-packager": "^8.7.2",
+    "fs-extra": "^4.0.0",
+    "webpack": "^3.4.1"
+  },
+  "dependencies": {
+    "chalk": "^2.0.1",
+    "cli-highlight": "^1.1.4",
+    "electron-window-state": "^4.1.1",
+    "plist": "^2.1.0"
   }
 }

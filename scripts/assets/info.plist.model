@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>DemoApp</string>
+        </array>
+        <key>CFBundleURLName</key>
+        <string>Demo App</string>
+      </dict>
+    </array>
+    <key>ElectronTeamID</key>
+    <string>XXXXXXXXXX</string>
+    <key>NSUserActivityTypes</key>
+    <array>
+      <string>com.example.electron.demoapp.topics</string>
+      <string>com.example.electron.demoapp.about</string>
+    </array>
+  </dict>
+</plist>
