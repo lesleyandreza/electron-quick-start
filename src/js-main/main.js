@@ -11,6 +11,26 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+const _promiseContinueActivity = () => {
+  return new Promise((resolve, reject) => {
+
+    let _bridgeServerIsLoaded = undefined;
+    let _count = 0
+
+    let _timer = setInterval(() => {
+      if (mainWindow) {
+        clearInterval(_timer)
+        resolve(mainWindow)
+      }
+      if (_count > 20) {
+        clearInterval(_timer)
+      }
+      _count++
+    }, 500)
+
+  })
+}
+
 ipcMain.on('emmit-handoff', (event, arg) => {
 
   console.log(chalk.green('⬆️  Emmit Handoff:'))
@@ -87,5 +107,35 @@ app.on('activate', function () {
   }
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+app.on('continue-activity', function (a, b, c) {
+
+  _promiseContinueActivity().then((mainWindow) => {
+    mainWindow.webContents.send('continue-activity', { a, b, c })
+  })
+
+})
+
+app.on('will-continue-activity', function (a, b, c) {
+
+  _promiseContinueActivity().then((mainWindow) => {
+    mainWindow.webContents.send('will-continue-activity', { a, b, c });
+  })
+
+})
+
+app.on('continue-activity-error', function (a, b, c) {
+
+  _promiseContinueActivity().then((mainWindow) => {
+    mainWindow.webContents.send('continue-activity-error', { a, b, c });
+  })
+
+})
+
+app.on('activity-continued', function (a, b, c) {
+
+  _promiseContinueActivity().then((mainWindow) => {
+    mainWindow.webContents.send('activity-continued', { a, b, c });
+  })
+
+})
+

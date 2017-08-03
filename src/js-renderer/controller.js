@@ -1,8 +1,11 @@
 const renderPages = require('./renderPages')
 const clearHandoff = require('./clearhandoff')
 const emmitHandoff = require('./emmitHandoff')
+const listenerHandoff = require('./listenerHandoff')
 
 module.exports = (function () {
+
+    listenerHandoff();
 
     let $menu = document.querySelector('.menu')
 
