@@ -1,14 +1,14 @@
 {
-    "APP_NAME": "DemoApp",
-    "APP_PRODUCT_NAME": "Demo App Handoff",
-    "APP_BUNDLE_ID": "com.electron.demohandoff",
+    "APP_NAME": "DummyApp",
+    "APP_PRODUCT_NAME": "Dummy App Handoff",
+    "APP_BUNDLE_ID": "com.electron.dummyhandoff",
     "TeamID": "XXXXXXXXXX",
     "SIGN_IDENTITY": "Mac Developer: Username (YYYYYYYYYY)",
     "ELECTRON_VERSION": "1.7.5",
     "VERSION_NAME": "1.0.0",
     "USER_ACTIVITY_TYPES": [
-        "com.example.electron.demoapp.topics",
-        "com.example.electron.demoapp.about"
+        "com.example.electron.dummyhandoff.topics",
+        "com.example.electron.dummyhandoff.about"
     ],
     "DEBUG": true
 }
