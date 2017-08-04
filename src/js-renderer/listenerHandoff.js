@@ -38,13 +38,13 @@ module.exports = function () {
         console.groupEnd('[HANDOFF] activity-was-continued')
     })
 
-    ipcRenderer.on('update-activity', (event, obj) => {
+    ipcRenderer.on('update-activity-state', (event, obj) => {
         let { a, b, c } = obj
-        console.groupCollapsed('[HANDOFF] update-activity')
+        console.groupCollapsed('[HANDOFF] update-activity-state')
         console.log(a)
         console.log(b)
         console.log(c)
-        console.groupEnd('[HANDOFF] update-activity')
+        console.groupEnd('[HANDOFF] update-activity-state')
     })
 
 }

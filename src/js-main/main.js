@@ -139,10 +139,10 @@ app.on('activity-was-continued', function (a, b, c) {
 
 })
 
-app.on('update-activity', function (a, b, c) {
+app.on('update-activity-state', function (a, b, c) {
 
   _promiseContinueActivity().then((mainWindow) => {
-    mainWindow.webContents.send('update-activity', { a, b, c });
+    mainWindow.webContents.send('update-activity-state', { a, b, c });
   })
 
 })
