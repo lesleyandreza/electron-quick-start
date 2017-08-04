@@ -29,13 +29,22 @@ module.exports = function () {
         console.groupEnd('[HANDOFF] continue-activity-error')
     })
 
-    ipcRenderer.on('activity-continued', (event, obj) => {
+    ipcRenderer.on('activity-was-continued', (event, obj) => {
         let { a, b, c } = obj
-        console.groupCollapsed('[HANDOFF] activity-continued')
+        console.groupCollapsed('[HANDOFF] activity-was-continued')
         console.log(a)
         console.log(b)
         console.log(c)
-        console.groupEnd('[HANDOFF] activity-continued')
+        console.groupEnd('[HANDOFF] activity-was-continued')
+    })
+
+    ipcRenderer.on('update-activity', (event, obj) => {
+        let { a, b, c } = obj
+        console.groupCollapsed('[HANDOFF] update-activity')
+        console.log(a)
+        console.log(b)
+        console.log(c)
+        console.groupEnd('[HANDOFF] update-activity')
     })
 
 }

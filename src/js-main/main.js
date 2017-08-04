@@ -131,10 +131,18 @@ app.on('continue-activity-error', function (a, b, c) {
 
 })
 
-app.on('activity-continued', function (a, b, c) {
+app.on('activity-was-continued', function (a, b, c) {
 
   _promiseContinueActivity().then((mainWindow) => {
-    mainWindow.webContents.send('activity-continued', { a, b, c });
+    mainWindow.webContents.send('activity-was-continued', { a, b, c });
+  })
+
+})
+
+app.on('update-activity', function (a, b, c) {
+
+  _promiseContinueActivity().then((mainWindow) => {
+    mainWindow.webContents.send('update-activity', { a, b, c });
   })
 
 })
