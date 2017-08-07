@@ -31,6 +31,15 @@ const _promiseContinueActivity = () => {
   })
 }
 
+ipcMain.on('update-activity', (event, arg) => {
+
+  console.log(chalk.green('⬆️  Update Handoff:'))
+  console.log(highlight(JSON.stringify(arg, null, 2), { language: 'json' }))
+  let { type, userInfo } = arg;
+  app.updateCurrentActivity(type, userInfo)
+
+})
+
 ipcMain.on('emmit-handoff', (event, arg) => {
 
   console.log(chalk.green('⬆️  Emmit Handoff:'))
