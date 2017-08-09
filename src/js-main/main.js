@@ -33,7 +33,7 @@ const _promiseContinueActivity = () => {
 
 ipcMain.on('update-activity', (event, arg) => {
 
-  console.log(chalk.green('⬆️  Update Handoff:'))
+  console.log(chalk.green('<< Update Current Activity'))
   console.log(highlight(JSON.stringify(arg, null, 2), { language: 'json' }))
   let { type, userInfo } = arg;
   app.updateCurrentActivity(type, userInfo)
@@ -148,10 +148,12 @@ app.on('activity-was-continued', function (a, b, c) {
 
 })
 
-app.on('update-activity-state', function (a, b, c) {
+app.on('update-activity-state', function (event, b, c) {
+  console.log(chalk.green('>> Update Activity State'))
 
+  event.preventDefault()
   _promiseContinueActivity().then((mainWindow) => {
-    mainWindow.webContents.send('update-activity-state', { a, b, c });
+    mainWindow.webContents.send('update-activity-state', { event, b, c });
   })
 
 })
